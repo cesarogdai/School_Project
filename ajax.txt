@@ -1,0 +1,22 @@
+ <?php
+ require('../../conexion.php');
+        $con=conexionMySQL(); 
+        ?>
+<?php
+
+   
+if(isset($_POST['id']) && isset($_POST['grupo']))
+{
+	$idBeca = $_POST['id'];
+	$idGrupo = $_POST['grupo'];
+	echo "idBeca".$idBeca;
+	echo "idGrupo".$idGrupo;
+	$query = "DELETE al, caja from alumnos al JOIN cajaaltabecasypromociones caja on caja.idpromo = al.idAlumno WHERE  caja.idpromo = ".$idBeca." AND caja.idgrupo = ".$idGrupo;
+	if(mysqli_query($con, $query)){
+	echo 1;
+	exit;
+	}else{
+	echo 0;
+	exit;}
+}
+?>
