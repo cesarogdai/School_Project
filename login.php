@@ -1,30 +1,29 @@
 <?php
-include('./conection.php');
+include('./connection.php');
 $con = connectionDB();
 $username = $_POST['username'];
 $password = $_POST['password'];
+$role = $_POST['role'];
 session_start();
 $_SESSION['username'] = $username;
 
-//students
-$queryStudents = "select * from uni_alumnos where email = '".$username."' and matricula = '".$password."'";
-
-$result = mysqli_query($con, $queryStudents);
-$row = mysqli_fetch_assoc($result);
-
-if($row){
-    $names = $row['nombres'];
+if($role == 'student'){
+    strtoupper($username);
+    $query = "select * from uni_alumnos where email = '".$username." and matricula = '".$password."'";
+    $result = mysqli_query($con, $query);
+    $rows = mysqli_num_rows($result);
+    if($rows > 0){
+        header("location:student/home.php");
+    }
+}elseif($role == 'teacher'){
+    $query = "select * from uni_profesor where email = '".$username."' and teléfono = '".$password."'";
+    $result = mysqli_query($con, $query );
+    $rows = mysqli_num_rows($result);
+    if($rows > 0){
+        header("location:teacher/teacher.php");
+    }
 }
-while($row = mysqli_fetch_assoc($result)){
-    $names = $row['nombres'];
-    $_SESSION['name'] = $names;
-    header("location:home.php");
-}
 
-    ?>
-    <h1 class="bad">Verifique sus datos </h1>
-    <?php
-}
 ?>
-}
+
     
