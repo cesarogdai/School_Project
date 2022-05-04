@@ -10,11 +10,17 @@ $_SESSION['username'] = $username;
 $queryStudents = "select * from uni_alumnos where email = '".$username."' and matricula = '".$password."'";
 
 $result = mysqli_query($con, $queryStudents);
-$rows = mysqli_num_rows($result);
-if($rows){
-    $_SESSION['name'] = $row['nombres'];
+$row = mysqli_fetch_assoc($result);
+
+if($row){
+    $names = $row['nombres'];
+}
+while($row = mysqli_fetch_assoc($result)){
+    $names = $row['nombres'];
+    $_SESSION['name'] = $names;
     header("location:home.php");
-}else{
+}
+
     ?>
     <h1 class="bad">Verifique sus datos </h1>
     <?php
