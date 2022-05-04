@@ -20,13 +20,13 @@
           <div class="card-body p-4 p-sm-5">
           	<!-- add accent at the end -->
             <h5 class="card-title text-center mb-5 fw-light fs-5">Iniciar Sesion</h5>
-            <form action="" method="post">
+            <form action="login.php" method="post">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="username">
+                <input type="text" class="form-control" name="username">
                 <label for="floatingInput">Usuario</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="password" >
+                <input type="password" class="form-control" name="password" >
                 <label for="floatingPassword">Contraseña</label>
               </div>
 
@@ -42,33 +42,5 @@
       </div>
     </div>
   </div>
-
-  <?php if(isset($_POST['btnCheck'])){
-  if(isset($_POST['username']) && isset($_POST['password'])){
-    $username = $_POST['username'];
-  $password = $_POST['password'];
-  print("<h1>Username: ".$username);
-  print("<br>");
-  print("<h1>Password: ".$password);
-
-
-
-  }
-    
-  }
-  
-  ?>
-
-
-
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.loginBtn').click(function(){
-        let el = this;
-
-        
-      });
-    });
-  </script>
 </body>
 </html>
