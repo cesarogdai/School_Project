@@ -1,5 +1,5 @@
 <?php
-require_once("./conection.php");
+require_once("../connection.php");
 $con  = connectionDB();
 ?>
 
@@ -94,8 +94,8 @@ $con  = connectionDB();
                 	<td><?php echo $row['telefono']; ?></td>
                 	<td><?php echo $row['email']; ?></td>
                 	
-                <!--	<td><button type="button" data-id='<?=$arrayData ?>' class="deleteGrupo btn btn-danger" name="delete-btngrupo" id="delete-btngrupo"><i class="fa fa-trash"></i></button></td>
-                	</tr> -->
+                	<td><button type="button" data-id='<?=$arrayData ?>' class="deleteGrupo btn btn-danger" name="delete-btngrupo" id="delete-btngrupo"><i class="fa fa-trash"></i></button></td>
+                	</tr> 
                 <?php
                 }
                 }
