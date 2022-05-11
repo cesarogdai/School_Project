@@ -25,6 +25,7 @@
       <a href="list_register_student.php">Alumnos Registrados</a>
       <a href="list_register_teacher.php">Profesores Registrados</a>
       <a href="kardex_student.php">Kardex de Alumnos</a>      
+      <a href="create_student.php">Registrar a un alumno</a>
      
     </div>
   </div> 

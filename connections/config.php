@@ -2,6 +2,6 @@
 
 define("SERVER", "localhost");
 define("USER", "root");
-define("PASS", "@Cf113207");
+define("PASS", "root");
 define("DB", "universidad");
 ?>

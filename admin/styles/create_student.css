@@ -1,0 +1,84 @@
+ div.form{
+        width: 600px;
+        margin: auto;
+        
+       }
+p{
+text-align: center;
+font-size: 20px;
+}
+div.data{
+width: 600px;
+margin: auto;        
+}
+
+div.caja{
+width: 500px;
+margin: auto;
+}
+
+searchId{
+text-align: right;
+}
+
+form-label{
+text-align: center;}
+h3{
+color: darkred;
+}
+form-label-caja{
+text-align: center;}
+
+div.tableList{
+width: 600px;
+margin:auto;
+}
+
+table {
+width: 60%;
+border-collapse:collapse;
+margin-left: 2.5%;
+margin-right: 2.5%;
+
+}
+
+.gradient-custom {
+/* fallback for old browsers */
+/*background: #f093fb;*/
+background: #FFFFFFF;
+
+/* Chrome 10-25, Safari 5.1-6 */
+/*background: -webkit-linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1));*/
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/*background: linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1))*/
+/*background-image: linear-gradient(315deg, #000000 0%, #414141 74%);*/
+
+
+
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+font-size: 1rem;
+line-height: 2.15;
+padding-left: .75em;
+padding-right: .75em;
+}
+.card-registration .select-arrow {
+top: 13px;
+}/*
+background-color: #000000;
+background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+
+
+
+
+
+
+
+
+
+
+
+
+*/
