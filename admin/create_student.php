@@ -32,14 +32,19 @@ cve_carrera
    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
      <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script> 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script> 
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
   <title>Registro</title>
   <link rel="stylesheet" type="text/css" href="styles/create_student.css">
 </head>
 <body>
-  <form action="register_student.php" method="post">
+  <form action="">
   <div class="vh-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center h-100">
@@ -197,10 +202,12 @@ cve_carrera
                     <select name="carreras" id="carreras"> 
                       <option value="lidts"> INGENIERÍA EN DESARROLLO Y TECNOLOGÍAS DE SOFTWARE</option>
                       <option value="civil">INGENIERÍA CIVIL</option>
+                      <option value="hidra">INGENIERÍA HIDRÁULICA</option>
                       <option value="admin">LICENCIATURA EN ADMINISTRACIÓN</option>
                       <option value="turist">LICENCIATURA EN GESTIÓN TURÍSTICA</option>
                       <option value="sistemas">LICENCIATURA EN SISTEMAS COMPUTACIONALES</option>
                       <option value="quimico">LICENCIATURA EN QUÍMICO FARMACOBIÓLOGO</option>
+
                     </select>
                   </div>
 
@@ -215,9 +222,9 @@ cve_carrera
                     Facultad de Contaduría y Administración
                   -->
                    
-                    <label class="form-label" for="fecha">Dependencia</label>
-                    <select name="carreras" id="carreras"> 
-                      <option value="lidts"> INGENIERÍA EN DESARROLLO Y TECNOLOGÍAS DE SOFTWARE</option>
+                    <label class="form-label" for="dependencia">Dependencia</label>
+                    <select name="dependencia" id="dependencia"> 
+                      
                       <option value="arquitectura">Facultad de Arquitectura</option>
                       <option value="ingenieria">Facultad de Ingeniería</option>
                       <option value="lenguas">Facultad de Lenguas</option>
@@ -249,7 +256,10 @@ cve_carrera
         
 
               <div class="mt-4 pt-2">
+                <!--
                 <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+              -->
+               <button type="button"  class='registerBtn btn btn-primary' name="register-btn" id="delete-btnbeca" >Click</button>
               </div>
 
             </form>
@@ -260,6 +270,62 @@ cve_carrera
   </div>
 </div>
 </form>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.registerBtn').click(function(){
+      /*
+        matricula
+        ape_pat
+        ape_mat
+        nombres
+        curp
+        genero
+        est_civil
+        estado
+        municipio
+        colonia
+        direccion
+        telefono
+        celular
+        email
+        fec_nacimiento
+        cve_dependencia
+        cve_carrera
+*/
+      let el = this;
+      let name = $("#name").val();
+      let matricula = $("#matricula").val();
+      let ape_pat = $("#ape_pat").val();
+      let ape_mat = $("#ape_mat").val();
+      let curp = $("#curp").val();
+      let genero = $("#genero").val();
+      let civil = $("#est_civil").val();
+      let state = $("#state").val();
+      let municipio = $("#municipio").val();
+      let colonia = $("#colonia").val();
+      let direccion = $("#direccion").val();
+      let telefono = $("#phone").val();
+      let email = $("#email").val();
+      let date = $("#fecha_nac").val();
+      //var conceptName = $('#aioConceptName').find(":selected").text();
+  //    let carrera = $("#carreras").find(":selected").text();
+    //  let dependencia = $("#dependencia").find(":selected").text();
+      let carrera = $("#carreras").val();
+      let dependencia = $("#dependencia").val();
+      let data = {name, matricula, ape_mat, ape_pat, curp, genero, civil, state, municipio, colonia, direccion, telefono, email, date, carrera, dependencia};
+      //console.log(dependencia);
+          $.ajax({
+            url:'register_student.php',
+            type:'post',
+            data:{data:data},
+            success: function(result){
+              if(result == 1){console.log(result);}
+            }
+          });
+    });
+  });
+</script>
 
 </body>
 </html>
