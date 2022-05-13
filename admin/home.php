@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+if(isset($_SESSION['logged']) == true && isset($_SESSION['role']) == 'admin')){
+
+  ?>
 
 <!DOCTYPE html>
 <html>
@@ -34,3 +40,8 @@
 
 </body>
 </html>
+<?php}
+else{
+  header('location:index.html');
+}
+?>
