@@ -1,6 +1,10 @@
 <?php
 require_once("../connection.php");
 $con  = connectionDB();
+session_start();
+if(isset($_SESSION['logged']) == true && isset($_SESSION['role']) == 'admin'){
+
+  
 ?>
 
 <!DOCTYPE html>
@@ -105,6 +109,7 @@ $con  = connectionDB();
                 }
 		}
 	}
+}
 		?>
 	</table>
 	</div>

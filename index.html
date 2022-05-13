@@ -27,8 +27,8 @@
         <div class="card border-0 shadow rounded-3 my-5">
           <div class="card-body p-4 p-sm-5">
           	<!-- add accent at the end -->
-            <h5 class="card-title text-center mb-5 fw-light fs-5">Iniciar Sesión</h5>
-            <form action="./login.php" method="post">
+            <h5 id="title" class="title card-title text-center mb-5 fw-light fs-5">Iniciar Sesión</h5>
+            <form action="login.php" method="post">
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" name="username" id="username">
                 <label for="floatingInput">Usuario</label>
@@ -64,13 +64,21 @@
       $('.loginBtn').click(function(e){
        e.preventDefault();
         let num = 0;
+        let username = $("#username").val();
+        let password = $("#password").val();
+        let role = $("#role").val();
+        let data = {username, password, role};
         $.ajax({
           url:'login.php',
           type:'post',
-          data:{num:num},
+          data:{data:data},
           success:function(result){
             if(result == 2){
-              alert("Revise sus datos");
+              //alert("Verifique sus datos");
+              $("#username").val("");
+              $("#password").val("");
+              $(".title").text("Verifique sus datos");
+              $('#modal').modal('toggle');
             }
 
           }
@@ -80,5 +88,24 @@
     });
     
   </script>
+  <div class="modal" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

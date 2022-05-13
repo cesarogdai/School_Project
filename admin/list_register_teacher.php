@@ -19,76 +19,30 @@
             
             <link rel="stylesheet" type="text/css" href="./home.css">
     </head>
-   <br>
-   <br>
 <body>
-   
+    <div class="navbar">
+  <a href="#home">Home</a>
+  
+  <div class="dropdown">
+    <button class="dropbtn">Mas
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <!--- Registro de Alumnos
 
-    <?php 
-    //include ("header.php");
-    $query = "select * from uni_profesor";
-
-    
-    $result = mysqli_query($con, $query);
-    
-    if($result)
-    {?>
-     <div class="table-responsive">
+        - Vista de alumnos registrados
+        - Vista de profesores registrados
+        - Vista de kardex de alumnos-->
+      <a href="list_register_student.php">Alumnos Registrados</a>
+      <a href="list_register_teacher.php">Profesores Registrados</a>
+      <a href="kardex_student.php">Kardex de Alumnos</a>      
+      <a href="create_student.php">Registrar a un alumno</a>
      
-                    <table class="table">
-                        <thead class="black white-text">
-                    <tr >
-                <th scope="col">cve_profesor</th>
-                <!--idr, idAlumno, observacion,cuatrimestre,
-                idGrupo, ciclo, periodo, envio, auxiliar-->
-                <th>Apellido Paterno</th>
-                <th>Apellido Materno</th>
-                <th>Nombres</th>
-              
-                <th>Telefono</th>
-                <th>Email</th>
-               
-                </thead>
-                    </tr>
-                </div>
-                <?php
-                if($result){
-                while($row = mysqli_fetch_assoc($result)){
-                $id = $row['cve_profesor'];
-                
-                $lastnamep = $row['ape_pat'];
-                $lastnamem = $row['ape_mat'];
-               
-                $observacion = $row['nombre'];
-                
-                $email = $row['email'];
-                $envio = $row['teléfono'];
-               
-                $arrayData = json_encode(array($matricula, $idGrupo));
-                ?>
-                <tr>
-                    <td><?php echo $row['cve_profesor'];?></td>
-                    <td><?php echo $row['ape_pat']; ?></td>
-                    <td><?php echo $row['ape_mat']; ?></td>
-                    <td><?php echo $row['nombre']; ?></td>
-                
-                    <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['teléfono']; ?></td>
-                    
-                    <td><button type="button" data-id='<?=$arrayData ?>' class="deleteGrupo btn btn-danger" name="delete-btngrupo" id="delete-btngrupo"><i class="fa fa-trash"></i></button></td>
-                    </tr> 
-                <?php
-                }
-                }
-                else{
-                ?><h3>No se encontraron registros</h3>
-                <?php
-                }
-        }
-    
-        ?>
-    </table>
     </div>
+  </div> 
+</div>
+
+
 
 </body>
 </html>

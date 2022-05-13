@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(isset($_SESSION['logged']) == true && isset($_SESSION['role']) == 'admin')){
+if(isset($_SESSION['logged']) == true && isset($_SESSION['role']) == 'admin'){
 
   ?>
 
@@ -40,8 +40,10 @@ if(isset($_SESSION['logged']) == true && isset($_SESSION['role']) == 'admin')){
 
 </body>
 </html>
-<?php}
+<?php
+}
+
 else{
-  header('location:index.html');
+  header('location:../index.html');
 }
 ?>
