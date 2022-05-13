@@ -1,27 +1,7 @@
 <?php
 require_once("../connection.php");
 $con = connectionDB();
-/*
-Data to enter ->
-matricula
-ape_pat
-ape_mat
-nombres
-curp
-genero
-est_civil
-estado
-municipio
-colonia
-direccion
-telefono
-celular
-email
-fec_nacimiento
-cve_dependencia
-cve_carrera
 
-*/
 ?>
 
 <!DOCTYPE html>
@@ -30,12 +10,8 @@ cve_carrera
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script> 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -274,25 +250,7 @@ cve_carrera
 <script type="text/javascript">
   $(document).ready(function(){
     $('.registerBtn').click(function(){
-      /*
-        matricula
-        ape_pat
-        ape_mat
-        nombres
-        curp
-        genero
-        est_civil
-        estado
-        municipio
-        colonia
-        direccion
-        telefono
-        celular
-        email
-        fec_nacimiento
-        cve_dependencia
-        cve_carrera
-*/
+
       let el = this;
       let name = $("#name").val();
       let matricula = $("#matricula").val();
@@ -308,19 +266,17 @@ cve_carrera
       let telefono = $("#phone").val();
       let email = $("#email").val();
       let date = $("#fecha_nac").val();
-      //var conceptName = $('#aioConceptName').find(":selected").text();
-  //    let carrera = $("#carreras").find(":selected").text();
-    //  let dependencia = $("#dependencia").find(":selected").text();
       let carrera = $("#carreras").val();
       let dependencia = $("#dependencia").val();
       let data = {name, matricula, ape_mat, ape_pat, curp, genero, civil, state, municipio, colonia, direccion, telefono, email, date, carrera, dependencia};
-      //console.log(dependencia);
           $.ajax({
             url:'register_student.php',
             type:'post',
             data:{data:data},
             success: function(result){
-              if(result == 1){console.log(result);}
+              if(result == 1){
+                alert("Ha ocurrido algo");
+              }
             }
           });
     });
