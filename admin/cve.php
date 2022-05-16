@@ -21,6 +21,9 @@ $con  = connectionDB();
 <body>
 
 <body>
+    <?php
+    include('menu.html');
+    ?>
 	<div class="form">
 	<p><b></p></b>
 	</div>

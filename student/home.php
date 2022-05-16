@@ -1,28 +1,37 @@
+<?php
+session_start();
+$role = $_SESSION['role'];
+$username = $_SESSION['username'];
+if($role == 'student'){
+  if(isset($_SESSION['logged']) == true){
+    include("menu.html");
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="../styles/home.css">
-	<title>HOME</title>
-</head>
-<body>
-	<div class="navbar">
-  <a href="#home">Home</a>
-  
-  <div class="dropdown">
-    <button class="dropbtn">Mas
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="kardex.php">Kardex</a>
-     
-    </div>
-  </div> 
-</div>
+?>
+
+
+<?php
+
+require_once("../connection.php");
+$con = connectionDB();
+ $query = "select al.nombres, al.ape_pat, al.ape_mat, al.cve_carrera from uni_alumnos al where email = '".$username."'";
+ 
+ $result = mysqli_query($con, $query);
+ if($result){
+  while($row = mysqli_fetch_assoc($result)){
+    $name = $row['nombres'];
+  }
+ }
+?>
+<p>Bienvenido <b><?php echo $name;?></p></b>
 
 
 </body>
 </html>
+
+<?php 
+}
+}
+elseif($role != 'student'){
+  header("location: ../index.html");
+}
+?>

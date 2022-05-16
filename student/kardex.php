@@ -1,169 +1,86 @@
-<?php
+<?php 
+session_start();
 require_once("../connection.php");
-$con  = connectionDB();
+$con = connectionDB();
+
+$role = $_SESSION['role'];
+$username = $_SESSION['username'];
+
+if($role == 'student'){
+    if(isset($_SESSION['logged']) == true){
+        include("./menu.html");
+
+   $query = "select mat.descripcion, 
+alu.ape_mat, 
+alu.cve_carrera, gr.cve_materia, gr.cve_carrera
+from uni_alumnos alu 
+inner join uni_grupos gr on gr.cve_carrera = alu.cve_carrera 
+inner join uni_materias mat on mat.cve_materia = gr.cve_materia 
+where alu.email  = '".$username."'";
+        $result= mysqli_query($con, $query);
+        ?>
+ <!DOCTYPE html>  
+ <html>  
+      <head>  
+           <title>Webslesson Tutorial | Export HTML table to Excel File using Jquery with PHP</title>  
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+      </head>  
+      <body>  
+           <br />  
+           <div class="container" style="width:700px;">  
+                <h3 class="text-center">KARDEX</h3><br />  
+                <div class="table-responsive" id="employee_table">  
+                     <table class="table table-bordered">  
+                          <tr>  
+                               <th width="10%">#</th>  
+                               <th width="50%">MATERIA</th>  
+                          </tr>  
+                          <?php   
+                          while($row = mysqli_fetch_array($result))  
+                          {  
+                          ?>  
+                          <tr>  
+                            
+                               <td><?php echo $row['cve_materia']; ?></td>  
+                               <td><?php echo $row['descripcion']; ?></td>  
+                          </tr>  
+                          <?php                           
+                          }  
+                          ?>  
+                     </table>  
+                </div>  
+               <!-- <div align="center">  
+                     <button name="create_excel" id="create_excel" class="btn btn-success">Create Excel File</button>  
+                </div>  
+           </div>  -->
+           <br />  
+     
+ <script>  
+ $(document).ready(function(){  
+      $('#create_excel').click(function(){  
+           var excel_data = $('#employee_table').html();  
+           var page = "download.php?data=" + excel_data;  
+           window.location = page;  
+      });  
+ });  
+ </script>  
+
+ </body>  
+ </html>  
+ <?php
+}
+}
+elseif($role != "student" ||$_SESSION['logged'] == false){
+    header("location: ../index.html");
+}
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script> 
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js'></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="styles/login_style.css" rel="stylesheet" type="text/css">
-        
-	<title>Pagina de admin</title>
-</head>
-<hr>
-<body>
-
-<body>
-	<div class="form">
-	<p><b></p></b>
-	</div>
-	
-	<form action="" method="post" id="formSearch">
-	<div class="data" align="center">
-		
-	<label class="form-label" for="formId" class="form-control">Ingrese la matricula</label>
-	<input type="text" name="grupoId" id="grupoId" class="form-control"/>
-	<hr>
-	
-	<button type="submit" name="grupo_id" id="grupo_id" class="idGroup btn btn-warning">Consultar</button>
-	<hr>
-	</form>
-	
-	<?php 
-	if(isset($_POST['grupo_id'])){
-	$idGrupo = isset($_POST['grupoId']) ? $_POST['grupoId'] : "";
-	$query = "
-select ug.cve_materia, ug.cve_carrera, al.matricula, al.cve_carrera,al.nombres ,al.estado, al.ape_pat,  mat.cve_materia, mat.descripcion
-from uni_grupos ug join uni_alumnos al on ug.cve_carrera = al.cve_carrera 
-join uni_materias mat on ug.cve_materia = mat .cve_materia 
-where al.cve_carrera = 6 and al.matricula  = '".$idGrupo."'";
-	$result = mysqli_query($con, $query);
-	if($idGrupo == ""){
-	?><h3>Por favor ingrese algo</h3>
-	<?php }
-	else if(!$result){
-	?>
-	<h3>No se encontraron registros</h3>
-	<?php
-	}
-	else if($idGrupo != "" && $result)
-	{?>
-	 <div class="table-responsive">
-	 
-                    <table class="table">
-	                    <thead class="black white-text">
-                	<tr >
-                <th scope="col">Matricula</th>
-                <!--idr, idAlumno, observacion,cuatrimestre,
-                idGrupo, ciclo, periodo, envio, auxiliar-->
-                <th>Nombre</th>
-                <th>Apellido Paterno</th>
-                <th>Estado</th>
-              
-                <th>Cve Materia</th>
-                <th>Descripcion</th>
-               
-                </thead>
-                	</tr>
-                </div>
-                <?php
-                if($result){
-                while($row = mysqli_fetch_assoc($result)){
-                $matricula = $row['matricula'];
-                
-                $name = $row['nombres'];
-                $lastname = $row['estado'];
-               
-                $observacion = $row['cve_materia'];
-                
-                $period = $row['descripcion'];
-                $envio = $row['envio'];
-                $aux = $row['auxiliar'];
-                $arrayData = json_encode(array($matricula, $idGrupo));
-                ?>
-                <tr>
-                	<td><?php echo $row['matricula'];?></td>
-                	<td><?php echo $row['nombres']; ?></td>
-                	<td><?php echo $row['ape_pat']; ?></td>
-                	<td><?php echo $row['estado']; ?></td>
-                
-                	<td><?php echo $row['cve_materia']; ?></td>
-                	<td><?php echo $row['descripcion']; ?></td>
-                	
-                <!--	<td><button type="button" data-id='<?=$arrayData ?>' class="deleteGrupo btn btn-danger" name="delete-btngrupo" id="delete-btngrupo"><i class="fa fa-trash"></i></button></td>
-                	</tr> -->
-                <?php
-                }
-                }
-                else{
-                ?><h3>No se encontraron registros</h3>
-                <?php
-                }
-		}
-	}
-		?>
-	</table>
-	</div>
-	
-        
-         <script type="text/javascript">
-            $(document).ready(function () {
-                $('.delete').click(function () {
-                    var el = this;
-                    var deleteid = $(this).data('id');     
-                    bootbox.confirm("¿Desea borrar el registro?", function (result) {
-
-                        if (result) {
-                            $.ajax({
-                                url: 'controlcentral/Eliminar_Ciclo/ajax.php',
-                                type: 'POST',
-                                data: {id: deleteid},
-                                success: function (response) {
-                                    if (response == 1) {
-                                        $(el).closest('tr').css('background', 'tomato');
-                                        $(el).closest('tr').fadeOut(800, function () {
-                                            $(this).remove();
-                                        });
-                                        bootbox.alert("Se ha borrado exitosamente");
-                                      
-                                        
-                                    }
-                                     else {
-                                        bootbox.alert('No se pudo borrar');
-                                      
-                                    }
-
-                                }
-                            });
-                        }
-
-                    });
-
-                });
-            });
-        </script>
-             
-    </body>
-</html>
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
+ 

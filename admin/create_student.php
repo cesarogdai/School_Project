@@ -1,6 +1,12 @@
 <?php
-require_once("../connection.php");
+session_start();
+
+//if($_SESSION['logged']) == true && $_SESSION['role']) == 'admin'){
+$role = $_SESSION['role'];
+if($role == 'admin'){
+  require_once("../connection.php");
 $con = connectionDB();
+if(isset($_SESSION['logged']) == true ){
 
 ?>
 
@@ -20,6 +26,9 @@ $con = connectionDB();
   <link rel="stylesheet" type="text/css" href="styles/create_student.css">
 </head>
 <body>
+  <?php 
+  include('menu.html');
+  ?>
   <form action="">
   <div class="vh-100 gradient-custom">
   <div class="container py-5 h-100">
@@ -282,6 +291,12 @@ $con = connectionDB();
     });
   });
 </script>
+<?php }}
+
+elseif($role != 'admin' && $_SESSION['logged'] != true){
+  header("location: ../index.html");
+}
+?>
 
 </body>
 </html>

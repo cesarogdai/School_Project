@@ -20,27 +20,9 @@
             <link rel="stylesheet" type="text/css" href="./home.css">
     </head>
 <body>
-    <div class="navbar">
-  <a href="#home">Home</a>
-  
-  <div class="dropdown">
-    <button class="dropbtn">Mas
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <!--- Registro de Alumnos
-
-        - Vista de alumnos registrados
-        - Vista de profesores registrados
-        - Vista de kardex de alumnos-->
-      <a href="list_register_student.php">Alumnos Registrados</a>
-      <a href="list_register_teacher.php">Profesores Registrados</a>
-      <a href="kardex_student.php">Kardex de Alumnos</a>      
-      <a href="create_student.php">Registrar a un alumno</a>
-     
-    </div>
-  </div> 
-</div>
+  <?php
+  include('menu.html');
+  ?>
 
 
 

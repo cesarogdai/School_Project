@@ -1,9 +1,12 @@
 <?php
 session_start();
 
-if(isset($_SESSION['logged']) == true && isset($_SESSION['role']) == 'admin'){
-
+//if($_SESSION['logged']) == true && $_SESSION['role']) == 'admin'){
+$role = $_SESSION['role'];
+if($role == 'admin'){
+if(isset($_SESSION['logged']) == true ){
   ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -15,35 +18,17 @@ if(isset($_SESSION['logged']) == true && isset($_SESSION['role']) == 'admin'){
 	<title>ADMIN</title>
 </head>
 <body>
-	<div class="navbar">
-  <a href="#home">Home</a>
-  
-  <div class="dropdown">
-    <button class="dropbtn">Mas
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <!--- Registro de Alumnos
-
-        - Vista de alumnos registrados
-        - Vista de profesores registrados
-        - Vista de kardex de alumnos-->
-      <a href="list_register_student.php">Alumnos Registrados</a>
-      <a href="list_register_teacher.php">Profesores Registrados</a>
-      <a href="kardex_student.php">Kardex de Alumnos</a>      
-      <a href="create_student.php">Registrar a un alumno</a>
-     
-    </div>
-  </div> 
-</div>
-
+	<?php
+  include('menu.html');
+  ?>
+<?php echo $role = $_SESSION['role'] ?>
 
 </body>
 </html>
 <?php
-}
-
-else{
-  header('location:../index.html');
+}}
+elseif ($role !='admin' ) {
+  header("location: ../index.html");
+  // code...
 }
 ?>
