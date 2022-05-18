@@ -1,0 +1,57 @@
+ div.form{
+        width: 600px;
+        margin: auto;
+        
+       }
+p{
+text-align: center;
+font-size: 20px;
+}
+div.data{
+width: 600px;
+margin: auto;        
+}
+
+div.caja{
+width: 500px;
+margin: auto;
+}
+
+searchId{
+text-align: right;
+}
+
+form-label{
+text-align: center;}
+h3{
+color: darkred;
+}
+form-label-caja{
+text-align: center;}
+
+div.tableList{
+width: 600px;
+margin:auto;
+}
+
+table {
+width: 60%;
+border-collapse:collapse;
+margin-left: 2.5%;
+margin-right: 2.5%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

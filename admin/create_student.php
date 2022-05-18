@@ -26,10 +26,27 @@ if(isset($_SESSION['logged']) == true ){
   <link rel="stylesheet" type="text/css" href="styles/create_student.css">
 </head>
 <body>
-  <?php 
-  include('menu.html');
-  ?>
-  <form action="">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      
+    </div>
+    <ul class="nav navbar-nav">
+      <li ><a href="home.php">Home</a></li>
+      <li><a href="list_register_student.php">Alumnos Registrados</a></li>
+      <li><a href="list_register_teacher.php">Profesores Registrados</a></li>
+      <li><a href="kardex_student.php">Kardex de Alumnos</a></li>
+      <li class="active"><a href="create_student.php">Registrar a un alumno</a></li>
+      <li><a href="logout.php">Cerrar Sesión</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+ 
+</div>
+  <form action="" id="form">
   <div class="vh-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center h-100">
@@ -62,16 +79,16 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 d-flex align-items-center">
 
                   <div class="form-outline datepicker w-100">
-                    <input type="text" class="form-control form-control-lg" id="ape_mat" />
-                    <label for="birthdayDate" class="form-label">Apellido Materno</label>
+                    <input type="text" class="form-control form-control-lg" id="ape_pat" />
+                    <label for="ape_pat" class="form-label">Apellido Paterno</label>
                   </div>
 
 
                 </div>
 
                 <div class="col-md-6 mb-4">
-                   <input type="text" class="form-control form-control-lg" id="ape_pat" />
-                    <label for="ape_pat" class="form-label">Apellido Paterno</label>
+                   <input type="text" class="form-control form-control-lg" id="ape_mat" />
+                    <label for="ape_mat" class="form-label">Apellido Materno</label>
 
                
                 
@@ -101,7 +118,7 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="text" id="est_civil" class="form-control form-control-lg" />
+                    <input type="text" id="est_civil" class="form-control form-control-lg" name="est_civil" />
                     <label class="form-label" for="civil">Estado Civil</label>
                   </div>
 
@@ -109,7 +126,7 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="text" id="estado" class="form-control form-control-lg" />
+                    <input type="text" name="estado" id="estado" class="form-control form-control-lg" />
                     <label class="form-label" for="estado">Estado</label>
                   </div>
 
@@ -155,7 +172,7 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="text" id="celular" class="form-control form-control-lg" />
+                    <input type="text" id="celular" class="form-control form-control-lg"  name="celular" />
                     <label class="form-label" for="celular">Celular</label>
                   </div>
 
@@ -185,13 +202,14 @@ if(isset($_SESSION['logged']) == true ){
                   <div class="form-outline">
                     <label class="form-label" for="celular">Carrera</label>
                     <select name="carreras" id="carreras"> 
-                      <option value="lidts"> INGENIERÍA EN DESARROLLO Y TECNOLOGÍAS DE SOFTWARE</option>
-                      <option value="civil">INGENIERÍA CIVIL</option>
-                      <option value="hidra">INGENIERÍA HIDRÁULICA</option>
-                      <option value="admin">LICENCIATURA EN ADMINISTRACIÓN</option>
-                      <option value="turist">LICENCIATURA EN GESTIÓN TURÍSTICA</option>
-                      <option value="sistemas">LICENCIATURA EN SISTEMAS COMPUTACIONALES</option>
-                      <option value="quimico">LICENCIATURA EN QUÍMICO FARMACOBIÓLOGO</option>
+                      <option value="1">INGENIERÍA CIVIL</option>
+                      <option value="2">INGENIERÍA HIDRÁULICA</option>
+                      <option value="3">LICENCIATURA EN ADMINISTRACIÓN</option>
+                      <option value="4">LICENCIATURA EN GESTIÓN TURÍSTICA</option>
+                      <option value="5">LICENCIATURA EN SISTEMAS COMPUTACIONALES</option>
+                      <option value="6"> INGENIERÍA EN DESARROLLO Y TECNOLOGÍAS DE SOFTWARE</option>
+                      <option value="7">LICENCIATURA EN QUÍMICO FARMACOBIÓLOGO</option>
+
 
                     </select>
                   </div>
@@ -226,14 +244,14 @@ if(isset($_SESSION['logged']) == true ){
                  <h6 class="mb-2 pb-1">Genero: </h6>
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="female"
-                      value="option1" checked />
+                    <input class="form-check-input" type="radio" name="radioName" id="female"
+                      value="Mujer" checked />
                     <label class="form-check-label" for="femaleGender">Mujer</label>
                   </div>
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="male"
-                      value="option2" />
+                    <input class="form-check-input" type="radio" name="radioName" id="male"
+                      value="Hombre" />
                     <label class="form-check-label" for="maleGender">Hombre</label>
                   </div>
 
@@ -244,7 +262,7 @@ if(isset($_SESSION['logged']) == true ){
                 <!--
                 <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
               -->
-               <button type="button"  class='registerBtn btn btn-primary' name="register-btn" id="delete-btnbeca" >Click</button>
+               <button type="button"  class='registerBtn btn btn-primary' name="register-btn"  >Click</button>
               </div>
 
             </form>
@@ -254,7 +272,7 @@ if(isset($_SESSION['logged']) == true ){
     </div>
   </div>
 </div>
-</form>
+
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -266,25 +284,26 @@ if(isset($_SESSION['logged']) == true ){
       let ape_pat = $("#ape_pat").val();
       let ape_mat = $("#ape_mat").val();
       let curp = $("#curp").val();
-      let genero = $("#genero").val();
       let civil = $("#est_civil").val();
-      let state = $("#state").val();
       let municipio = $("#municipio").val();
       let colonia = $("#colonia").val();
       let direccion = $("#direccion").val();
+    //  let genero = $('input[name=radioName]:checked', '#form').val();
+      let celular = $("#celular")
       let telefono = $("#phone").val();
       let email = $("#email").val();
       let date = $("#fecha_nac").val();
       let carrera = $("#carreras").val();
       let dependencia = $("#dependencia").val();
+      //let estado = $("#estado").val();
+
 
       if(name =='' || matricula =='' || ape_pat == '' || ape_mat == '' ||
-        curp == '' || genero == '' || civil =='' || state == '' || municipio == '' || colonia == '' || direccion == '' telefono == '' || email == '' || date == '' || carrera == '' dependencia == ''){
+        curp == ''  || civil =='' || estado == '' || municipio == '' || colonia == '' || direccion == '' || telefono == '' || email == '' || date == '' || carrera == '' || 
+        dependencia == ''){
         $("#modalempty").modal('toggle');
       }else{
-
-
-      let data = {name, matricula, ape_mat, ape_pat, curp, genero, civil, state, municipio, colonia, direccion, telefono, email, date, carrera, dependencia};
+      let data = {name, matricula, ape_mat, ape_pat, curp,civil, estado, municipio, colonia, direccion, telefono, email, date, carrera, dependencia, celular};
           $.ajax({
             url:'register_student.php',
             type:'post',

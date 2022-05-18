@@ -27,8 +27,28 @@
             <link rel="stylesheet" type="text/css" href="./home.css">
     </head>
 <body>
+ 
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="home.php">Home</a></li>
+      <li><a href="list_register_student.php">Alumnos Registrados</a></li>
+      <li class="active"><a href="list_register_teacher.php">Profesores Registrados</a></li>
+      <li><a href="kardex_student.php">Kardex de Alumnos</a></li>
+      <li><a href="create_student.php">Registrar a un alumno</a></li>
+      <li><a href="logout.php">Cerrar Sesión</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+ 
+</div>
   <?php
-  include('menu.html');
+ 
 $query = "select prof.cve_profesor, prof.ape_pat, prof.ape_mat, prof.nombre, prof.email,prof.cve_dependencia,
 gru.cve_materia, um.descripcion 
 from uni_profesor prof

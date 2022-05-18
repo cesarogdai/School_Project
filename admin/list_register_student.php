@@ -22,10 +22,26 @@ if(isset($_SESSION['logged']) == true){
         
 	<title>Pagina de admin</title>
 </head>
-
 <body>
- <?php
- include('menu.html');?>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="home.php">Home</a></li>
+      <li class="active"><a href="list_register_student.php">Alumnos Registrados</a></li>
+      <li><a href="list_register_teacher.php">Profesores Registrados</a></li>
+      <li><a href="kardex_student.php">Kardex de Alumnos</a></li>
+      <li><a href="create_student.php">Registrar a un alumno</a></li>
+      <li><a href="logout.php">Cerrar Sesión</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+ 
+</div>
  <?php
  $query = 'select alu.nombres, alu.matricula, alu.ape_pat, alu.ape_mat, alu.estado, alu.cve_carrera, car.cve_carrera, car.nombre_carrera from uni_alumnos alu inner join uni_carreras car on car.cve_carrera = alu.cve_carrera';
  $result = mysqli_query($con, $query);?>

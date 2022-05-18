@@ -8,9 +8,9 @@ $username = $_SESSION['username'];
 
 if($role == 'student'){
     if(isset($_SESSION['logged']) == true){
-        include("./menu.html");
+        
 
-   $query = "select mat.descripcion, 
+   $query = "select mat.descripcion, alu.matricula,
 alu.ape_mat, 
 alu.cve_carrera, gr.cve_materia, gr.cve_carrera
 from uni_alumnos alu 
@@ -23,24 +23,70 @@ where alu.email  = '".$username."'";
  <!DOCTYPE html>  
  <html>  
       <head>  
-           <title>Webslesson Tutorial | Export HTML table to Excel File using Jquery with PHP</title>  
+            
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
       </head>  
+
+
+      <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a  href="home.php">Home</a>
+  <a href="kardex.php" class="active">Kardex</a>
+  <a href="logout.php">Cerrar Sesión</a>
+  
+</div>
+
+<div style="padding-left:16px">
+
+</div>
+
       <body>  
            <br />  
            <div class="container" style="width:700px;">  
-                <h3 class="text-center">KARDEX</h3><br />  
-                <div class="table-responsive" id="employee_table">  
-                     <table class="table table-bordered">  
-                          <tr>  
+                <h3 class="text-center">KARDEX DE <?php echo $username;?> </h3><br />  
+                <div class="table-responsive table-bordered">  
+                     <table class="table table-hover table-dark">  
+                          <tr class="success">  
                                <th width="10%">#</th>  
                                <th width="50%">MATERIA</th>  
                           </tr>  
                           <?php   
                           while($row = mysqli_fetch_array($result))  
-                          {  
+                          {  $matricula = $row['matricula'];
                           ?>  
                           <tr>  
                             
