@@ -1,4 +1,6 @@
 <?php
+/*Conexion a la db, se crea el metodo de conexión que se usa en todo el 
+programa llamado connecinot*/
 
 require_once('connections/config.php');
 
