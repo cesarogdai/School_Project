@@ -31,7 +31,8 @@ $con = connectionDB();
 <?php 
 }
 }
-elseif($role != 'student'){
+else{
   header("location: ../index.html");
+  session_destroy();
 }
 ?>

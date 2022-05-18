@@ -210,10 +210,10 @@ if(isset($_SESSION['logged']) == true ){
                     <label class="form-label" for="dependencia">Dependencia</label>
                     <select name="dependencia" id="dependencia"> 
                       
-                      <option value="arquitectura">Facultad de Arquitectura</option>
-                      <option value="ingenieria">Facultad de Ingeniería</option>
-                      <option value="lenguas">Facultad de Lenguas</option>
-                      <option value="contaduria">Facultad de Contaduría y Administración</option>
+                      <option value="86213">Facultad de Arquitectura</option>
+                      <option value="98024">Facultad de Ingeniería</option>
+                      <option value="2719813">Facultad de Lenguas</option>
+                      <option value="28137291">Facultad de Contaduría y Administración</option>
                     </select>
                   </div>
 
@@ -277,6 +277,13 @@ if(isset($_SESSION['logged']) == true ){
       let date = $("#fecha_nac").val();
       let carrera = $("#carreras").val();
       let dependencia = $("#dependencia").val();
+
+      if(name =='' || matricula =='' || ape_pat == '' || ape_mat == '' ||
+        curp == '' || genero == '' || civil =='' || state == '' || municipio == '' || colonia == '' || direccion == '' telefono == '' || email == '' || date == '' || carrera == '' dependencia == ''){
+        $("#modalempty").modal('toggle');
+      }else{
+
+
       let data = {name, matricula, ape_mat, ape_pat, curp, genero, civil, state, municipio, colonia, direccion, telefono, email, date, carrera, dependencia};
           $.ajax({
             url:'register_student.php',
@@ -284,22 +291,88 @@ if(isset($_SESSION['logged']) == true ){
             data:{data:data},
             success: function(result){
               if(result == 1){
-                alert("Ha ocurrido algo");
+                $("#modalsuccess").modal('toggle');
+                window.location.href = "admin/home.php";
+                
+              }if(result == 2){
+                $("#modalerror").modal('toggle');
               }
             }
           });
+        }
     });
   });
 </script>
-<?php }}
+<div class="modal" tabindex="-1" role="dialog" id="modalerror">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sucedio algo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Por favor verifique los datos</p>
+      </div>
 
-elseif($role != 'admin' && $_SESSION['logged'] != true){
-  header("location: ../index.html");
-}
-?>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modalsuccess">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Aviso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Los datos han siddo cargados correctamente</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div class="modal" tabindex="-1" role="dialog" id="modalempty">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Paso algo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <!--<span aria-hidden="true">&times;</span>-->
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Por favor llene todos los campos</p>
+      </div>
+      <div class="modal-footer">
+       <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 </body>
 </html>
+<?php }}
+else{
+  header("location: ../index.html");
+  session_destroy();
+}
+?>
 
 
 

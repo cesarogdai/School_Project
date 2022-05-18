@@ -1,6 +1,12 @@
 <?php
 require_once("../connection.php");
 $con  = connectionDB();
+$role = $_SESSION['role'];
+if($role == 'admin'){
+    if($_SESSION['logged'] == true){
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -152,3 +158,12 @@ $con  = connectionDB();
              
     </body>
 </html>
+<?php
+    }
+}
+
+else{
+    header("location: ../index.html");
+    session_destroy();
+}
+?>

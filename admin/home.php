@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-//if($_SESSION['logged']) == true && $_SESSION['role']) == 'admin'){
 $role = $_SESSION['role'];
 if($role == 'admin'){
 if(isset($_SESSION['logged']) == true ){
@@ -27,8 +26,8 @@ if(isset($_SESSION['logged']) == true ){
 </html>
 <?php
 }}
-elseif ($role !='admin' ) {
+else {
   header("location: ../index.html");
-  // code...
+  session_destroy();
 }
 ?>

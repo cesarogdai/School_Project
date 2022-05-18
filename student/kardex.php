@@ -18,6 +18,7 @@ inner join uni_grupos gr on gr.cve_carrera = alu.cve_carrera
 inner join uni_materias mat on mat.cve_materia = gr.cve_materia 
 where alu.email  = '".$username."'";
         $result= mysqli_query($con, $query);
+
         ?>
  <!DOCTYPE html>  
  <html>  
@@ -51,8 +52,9 @@ where alu.email  = '".$username."'";
                           ?>  
                      </table>  
                 </div>  
-               <!-- <div align="center">  
-                     <button name="create_excel" id="create_excel" class="btn btn-success">Create Excel File</button>  
+                <!--
+               <div align="center">  
+                     <button name="create_excel" id="create_excel" class="btn btn-success" data-id="<?php echo $username;?>">Create Excel File</button>  
                 </div>  
            </div>  -->
            <br />  
@@ -60,9 +62,17 @@ where alu.email  = '".$username."'";
  <script>  
  $(document).ready(function(){  
       $('#create_excel').click(function(){  
-           var excel_data = $('#employee_table').html();  
-           var page = "download.php?data=" + excel_data;  
-           window.location = page;  
+           username = $(this).attr("data-id");
+          // console.log(username);
+           $.ajax({
+               url: 'download.php',
+               type:'post',
+               data:{username:username},
+               success: function(result){
+                    console.log(result);
+
+               }
+           });
       });  
  });  
  </script>  
@@ -72,8 +82,9 @@ where alu.email  = '".$username."'";
  <?php
 }
 }
-elseif($role != "student" ||$_SESSION['logged'] == false){
-    header("location: ../index.html");
+else{
+     header("location: ../index.html");
+     session_destroy();
 }
 ?>
 

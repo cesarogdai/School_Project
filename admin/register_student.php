@@ -20,7 +20,7 @@ elseif($dependencia == 'lenguas'){$cve_dep = "2719813";}*/
 $query = 'insert into uni_alumnos matricula, ape_pat, ape_mat, nombres, curp, genero, est_civil, estado, municipio, colonia, direccion, telefono, celular, email, fec_nacimiento, cve_dependencia, cve_carrera values '.$data['matricula'].$data['ape_pat'].$data['ape_mat'].$data['name'].$data['curp'].$data['genero'].$data['est_civil'].$data['state'].$data['municipio'].$data['direccion'].$data['telefono'].$data['celular'].$data['email'].$data['date'].$data['dependencia'].$data['dependencia'];
 
 if(mysqli_query($con, $query)){
-    header("location:admin/home.php");
+  //  header("location:admin/home.php");
     echo 1;
 }else{
     echo 2;

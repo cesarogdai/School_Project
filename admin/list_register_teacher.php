@@ -1,6 +1,13 @@
 <?php 
  	include('../connection.php');
  	$con = connectionDB();
+  session_start();
+  $role = $_SESSION['role'];
+  if($role == 'admin'){
+    if($_SESSION['logged'] == true){
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +29,58 @@
 <body>
   <?php
   include('menu.html');
+$query = "select prof.cve_profesor, prof.ape_pat, prof.ape_mat, prof.nombre, prof.email,prof.cve_dependencia,
+gru.cve_materia, um.descripcion 
+from uni_profesor prof
+inner join uni_grupos gru on gru.cve_profesor = prof.cve_profesor 
+inner join uni_materias um on prof.cve_profesor = um.cve_materia ";
+$result = mysqli_query($con, $query);
   ?>
 
-
+<br>
+<h3 class="text-center">Lista de Profesores</h3>
+<div class="container" style="width:700px;">
+<div class="table-responsive table-bordered">
+  <table class="table table-hover table-dark">
+    <thead class="black white-text"> 
+      <tr class="success">
+        <th width="10%">Nombres </th>
+        <th width="10%">Paterno </th>
+        <th width="10%">Materno </th>
+        <th width="20%">Email </th>
+        <th width="20%">Teléfono </th>
+        <th width="40%">Materia </th>
+      </tr>
+    </thead>
+    <tbody>
+<?php
+if($result){
+  while($row = mysqli_fetch_assoc($result)){
+    ?>
+    <tr>
+      <td><?php echo $row['nombre'];?></td>
+      <td><?php echo $row['ape_pat'];?></td>
+      <td><?php echo $row['ape_mat'];?></td>
+      <td><?php echo $row['email'];?></td>
+      <td><?php echo $row['teléfono'];?></td>
+      <td><?php echo $row['descripcion'];?></td>
+      <?php
+  }
+}
+?>
+</tr>
+</tbody>
+</table>
+</div>
 
 </body>
 </html>
+<?php
+
+  }
+}
+else{
+  header("location: ../index.html");
+  session_destroy();
+}
+?>
