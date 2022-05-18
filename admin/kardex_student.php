@@ -75,16 +75,16 @@ $con = connectionDB();
                 if(isset($_POST['matricula'])){
                  $matricula = isset($_POST['matricula_input'])? $_POST['matricula_input'] : "";
                  
-                $query = "select mat.descripcion, alu.matricula, alu.ape_mat,  alu.cve_carrera, gr.cve_materia, gr.cve_carrera from uni_alumnos alu inner join uni_grupos gr on gr.cve_carrera = alu.cve_carrera inner join uni_materias mat on mat.cve_materia = gr.cve_materia where alu.matricula  = 'A180410'";
+                $query = "select mat.descripcion, alu.matricula, alu.ape_mat,  alu.cve_carrera, gr.cve_materia, gr.cve_carrera from uni_alumnos alu inner join uni_grupos gr on gr.cve_carrera = alu.cve_carrera inner join uni_materias mat on mat.cve_materia = gr.cve_materia where alu.matricula  = '".$matricula."'";
 
                 $result = mysqli_query($con, $query);
-
+                $row = $result->num_rows;
                     if($matricula == ""){
                     ?><h3>Por favor ingrese algo</h3>
                 
 
                     <?php }
-                    else if(!$result){
+                    else if($row == 0){
                       ?>
                 <h3>No se encontraron registros</h3>
                 
