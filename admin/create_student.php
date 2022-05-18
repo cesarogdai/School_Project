@@ -100,7 +100,7 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="email" id="email" class="form-control form-control-lg" />
+                    <input type="text" id="email" class="form-control form-control-lg" />
                     <label class="form-label" for="email">Correo Electrónico</label>
                   </div>
 
@@ -118,7 +118,7 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="text" id="est_civil" class="form-control form-control-lg" name="est_civil" />
+                    <input type="text" id="civil" class="form-control form-control-lg" name="civil" />
                     <label class="form-label" for="civil">Estado Civil</label>
                   </div>
 
@@ -136,7 +136,7 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="text" id="municipio" class="form-control form-control-lg" />
+                    <input type="text" id="municipio" name="municipio" class="form-control form-control-lg" />
                     <label class="form-label" for="municipio">Municipio</label>
                   </div>
 
@@ -144,7 +144,7 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="text" id="colonia" class="form-control form-control-lg" />
+                    <input type="text" id="colonia" name="colonia" class="form-control form-control-lg" />
                     <label class="form-label" for="colonia">Colonia</label>
                   </div>
 
@@ -154,7 +154,7 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="text" id="direccion" class="form-control form-control-lg" />
+                    <input type="text" id="direccion" name="direccion" class="form-control form-control-lg" />
                     <label class="form-label" for="direccion">Dirección</label>
                   </div>
 
@@ -162,7 +162,7 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="text" id="phone" class="form-control form-control-lg" />
+                    <input type="text" id="phone" name="phone" class="form-control form-control-lg" />
                     <label class="form-label" for="phone">Teléfono</label>
                   </div>
 
@@ -180,7 +180,7 @@ if(isset($_SESSION['logged']) == true ){
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="date" id="fecha_nac" class="form-control form-control-lg" />
+                    <input type="date" id="fecha_nac" name="fecha_nac" class="form-control form-control-lg" />
                     <label class="form-label" for="fecha">Fecha Nacimiento</label>
                   </div>
 
@@ -245,24 +245,24 @@ if(isset($_SESSION['logged']) == true ){
 
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="radioName" id="female"
-                      value="Mujer" checked />
+                      value="2" checked />
                     <label class="form-check-label" for="femaleGender">Mujer</label>
                   </div>
 
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="radioName" id="male"
-                      value="Hombre" />
+                      value="1" />
                     <label class="form-check-label" for="maleGender">Hombre</label>
                   </div>
 
 
         
 
-              <div class="mt-4 pt-2">
+              <div class="mt-4 pt-2" align="center">
                 <!--
                 <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
               -->
-               <button type="button"  class='registerBtn btn btn-primary' name="register-btn"  >Click</button>
+               <button type="button"   class='registerBtn btn btn-primary' name="register-btn" id="register-btn" >Registrar</button>
               </div>
 
             </form>
@@ -284,26 +284,25 @@ if(isset($_SESSION['logged']) == true ){
       let ape_pat = $("#ape_pat").val();
       let ape_mat = $("#ape_mat").val();
       let curp = $("#curp").val();
-      let civil = $("#est_civil").val();
+      let civil = $("#civil").val();
       let municipio = $("#municipio").val();
       let colonia = $("#colonia").val();
       let direccion = $("#direccion").val();
-    //  let genero = $('input[name=radioName]:checked', '#form').val();
-      let celular = $("#celular")
+      let genero = $('input[name=radioName]:checked', '#form').val();
+      let estado = $("#estado").val();
+      let celular = $("#celular").val();
       let telefono = $("#phone").val();
       let email = $("#email").val();
       let date = $("#fecha_nac").val();
       let carrera = $("#carreras").val();
       let dependencia = $("#dependencia").val();
-      //let estado = $("#estado").val();
-
 
       if(name =='' || matricula =='' || ape_pat == '' || ape_mat == '' ||
         curp == ''  || civil =='' || estado == '' || municipio == '' || colonia == '' || direccion == '' || telefono == '' || email == '' || date == '' || carrera == '' || 
-        dependencia == ''){
+        dependencia == '' || celular == ''){
         $("#modalempty").modal('toggle');
       }else{
-      let data = {name, matricula, ape_mat, ape_pat, curp,civil, estado, municipio, colonia, direccion, telefono, email, date, carrera, dependencia, celular};
+      let data = {name, matricula, ape_pat, ape_mat, curp, civil, municipio, colonia, direccion, genero, estado, celular, telefono, email, date, carrera, dependencia};
           $.ajax({
             url:'register_student.php',
             type:'post',
@@ -311,7 +310,7 @@ if(isset($_SESSION['logged']) == true ){
             success: function(result){
               if(result == 1){
                 $("#modalsuccess").modal('toggle');
-                window.location.href = "admin/home.php";
+               
                 
               }if(result == 2){
                 $("#modalerror").modal('toggle');
@@ -345,7 +344,7 @@ if(isset($_SESSION['logged']) == true ){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Aviso</h5>
+        <h5 class="modal-title">Se ha cargado el registro</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         </button>
       </div>

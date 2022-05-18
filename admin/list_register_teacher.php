@@ -1,10 +1,10 @@
 <?php 
- 	include('../connection.php');
- 	$con = connectionDB();
   session_start();
   $role = $_SESSION['role'];
   if($role == 'admin'){
     if($_SESSION['logged'] == true){
+        include('../connection.php');
+  $con = connectionDB();
 
 
 

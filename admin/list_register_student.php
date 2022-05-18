@@ -1,11 +1,11 @@
 <?php
-require_once("../connection.php");
-$con  = connectionDB();
+
 session_start();
 $role = $_SESSION['role'];
 if($role == 'admin'){
 if(isset($_SESSION['logged']) == true){
-
+  require_once("../connection.php");
+$con  = connectionDB();
 ?>
 
 <!DOCTYPE html>
@@ -47,41 +47,40 @@ if(isset($_SESSION['logged']) == true){
  $result = mysqli_query($con, $query);?>
 
  <br>
-   <div class="container" style="width:700px;">  
-                <h3 class="text-center">Lista de Alumnos</h3><br />  
-                <div class="table-responsive table-bordered">  
-                     <table class="table table-hover table-dark">  
-                      <thead>
-                          <tr class="success">  
-                               <th width="10%">Matricula</th>  
-                               <th width="50%">Nombres</th>  
-                               <th width="30%">Paterno</th>
-                               <th width="30%">Materno</th>
-                               <th width="30%">Estado</th>
-                               <th width="30%">Carrera</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <?php   
-                          while($row = mysqli_fetch_array($result))  
-                          {  
-                          ?>  
-                          <tr>  
-                            
-                               <td><?php echo $row['matricula']; ?></td>  
-                               <td><?php echo $row['nombres']; ?></td>  
-                               <td><?php echo $row['ape_pat']; ?></td>
-                               <td><?php echo $row['ape_mat']; ?></td>
-                               <td><?php echo $row['estado']; ?></td>
-                               <td><?php echo $row['nombre_carrera']; ?></td>
-                          </tr>  
-                          <?php                           
-                          }  
-                          ?>  
-                          </tbody>  
-                     </table>  
-                </div>  
-
+ <h3 class="text-center">Lista de Alumnos</h3>
+<div class="container" style="width:700px;">
+<div class="table-responsive table-bordered">
+  <table class="table table-hover table-dark">
+    <thead class="black white-text"> 
+      <tr class="success">
+        <th width="10%">Matricula </th>
+        <th width="10%">Nombres </th>
+        <th width="10%">Paterno </th>
+        <th width="20%">Materno </th>
+        <th width="20%">Estado </th>
+        <th width="40%">Carrera </th>
+      </tr>
+    </thead>
+    <tbody>
+<?php
+if($result){
+  while($row = mysqli_fetch_assoc($result)){
+    ?>
+    <tr>
+      <td><?php echo $row['matricula'];?></td>
+      <td><?php echo $row['nombres']; ?></td>
+      <td><?php echo $row['ape_pat'];?></td>
+      <td><?php echo $row['ape_mat'];?></td>
+      <td><?php echo $row['estado'];?></td>
+      <td><?php echo $row['nombre_carrera'];?></td>
+      <?php
+  }
+}
+?>
+</tr>
+</tbody>
+</table>
+</div>
 
 
 </body>

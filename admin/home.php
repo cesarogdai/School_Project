@@ -20,7 +20,7 @@ if(isset($_SESSION['logged']) == true ){
 	<?php
   include('menu.html');
   ?>
-<?php echo $role = $_SESSION['role'] ?>
+  <h3>Pagina de administrador</h3>
 
 </body>
 </html>
