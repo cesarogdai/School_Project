@@ -81,6 +81,12 @@ if($result){
 </tbody>
 </table>
 </div>
+<br>
+<div class="data" align="center">
+<form method="post" action="excels/excel_students.php" >
+    <input align="center" class="btn btn-primary" type="submit" name="submit" value="Descargar"/>
+  </form>
+</div>
 
 
 </body>

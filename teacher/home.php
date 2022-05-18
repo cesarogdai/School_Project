@@ -86,6 +86,12 @@ $result = mysqli_query($con, $query);
                      </table>  
                 </div>  
               </div>
+              <br>
+<div class="data" align="center">
+<form method="post" action="excel/download.php" >
+    <input align="center" class="btn btn-primary" type="submit" name="submit" value="Descargar"/>
+  </form>
+</div>
 </body>
 </html>
 <?php

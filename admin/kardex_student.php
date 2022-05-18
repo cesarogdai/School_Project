@@ -76,6 +76,7 @@ $con = connectionDB();
                  $matricula = isset($_POST['matricula_input'])? $_POST['matricula_input'] : "";
                  
                 $query = "select mat.descripcion, alu.matricula, alu.ape_mat,  alu.cve_carrera, gr.cve_materia, gr.cve_carrera from uni_alumnos alu inner join uni_grupos gr on gr.cve_carrera = alu.cve_carrera inner join uni_materias mat on mat.cve_materia = gr.cve_materia where alu.matricula  = '".$matricula."'";
+                $_SESSION['matricula'] = $matricula;
 
                 $result = mysqli_query($con, $query);
                 $row = $result->num_rows;
@@ -121,54 +122,20 @@ $con = connectionDB();
                      </table>  
                 </div>  
               </div>
+           <br>
+<div class="data" align="center">
+<form method="post" action="excels/excel_kardex_student.php" >
+    <input align="center" class="btn btn-primary" type="submit" name="submit" value="Descargar"/>
+  </form>
+</div>
+    </body>
+</html>
        <?php      
         }}
         ?>        
 
-        <hr>
-       
-        
-        
-        
-         <script type="text/javascript">
-            $(document).ready(function () {
-                $('.delete').click(function () {
-                    var el = this;
-                    var deleteid = $(this).data('id');     
-                    bootbox.confirm("¿Desea borrar el registro?", function (result) {
+    
 
-                        if (result) {
-                            $.ajax({
-                                url: 'controlcentral/Eliminar_Ciclo/ajax.php',
-                                type: 'POST',
-                                data: {id: deleteid},
-                                success: function (response) {
-                                    if (response == 1) {
-                                        $(el).closest('tr').css('background', 'tomato');
-                                        $(el).closest('tr').fadeOut(800, function () {
-                                            $(this).remove();
-                                        });
-                                        bootbox.alert("Se ha borrado exitosamente");
-                                      
-                                        
-                                    }
-                                     else {
-                                        bootbox.alert('No se pudo borrar');
-                                      
-                                    }
-
-                                }
-                            });
-                        }
-
-                    });
-
-                });
-            });
-        </script>
-             
-    </body>
-</html>
 <?php 
 }
 }else{

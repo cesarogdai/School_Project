@@ -104,24 +104,12 @@ body {
                 </div>  
            </div>  -->
            <br />  
-     
- <script>  
- $(document).ready(function(){  
-      $('#create_excel').click(function(){  
-           username = $(this).attr("data-id");
-          // console.log(username);
-           $.ajax({
-               url: 'download.php',
-               type:'post',
-               data:{username:username},
-               success: function(result){
-                    console.log(result);
 
-               }
-           });
-      });  
- });  
- </script>  
+<div class="data" align="center">
+<form method="post" action="excel/download.php" >
+    <input align="center" class="btn btn-primary" type="submit" name="submit" value="Descargar"/>
+  </form>
+</div>
 
  </body>  
  </html>  
