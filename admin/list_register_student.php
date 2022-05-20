@@ -6,6 +6,7 @@ if($role == 'admin'){
 if(isset($_SESSION['logged']) == true){
   require_once("../connection.php");
 $con  = connectionDB();
+
 ?>
 
 <!DOCTYPE html>

@@ -303,6 +303,7 @@ if(isset($_SESSION['logged']) == true ){
         $("#modalempty").modal('toggle');
       }else{
       let data = {name, matricula, ape_pat, ape_mat, curp, civil, municipio, colonia, direccion, genero, estado, celular, telefono, email, date, carrera, dependencia};
+      $("#modalsuccess").modal('toggle');
           $.ajax({
             url:'register_student.php',
             type:'post',
@@ -321,6 +322,17 @@ if(isset($_SESSION['logged']) == true ){
     });
   });
 </script>
+
+<script type="text/javascript">
+  $(document).ready(function (){
+   $('#modal_success').click(function(){
+    window.location.href = 'home.php';
+   });
+
+  });
+</script>
+
+
 <div class="modal" tabindex="-1" role="dialog" id="modalerror">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -353,7 +365,7 @@ if(isset($_SESSION['logged']) == true ){
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal_success" name="modal_success">Cerrar</button>
       </div>
     </div>
   </div>

@@ -96,3 +96,7 @@ male = chrome_browser.find_element_by_css_selector("input#male").click()
 
 register_btn = chrome_browser.find_element_by_id('register-btn')
 register_btn.click()
+
+
+close_btn = chrome_browser.find_element_by_id('modal_success')
+close_btn.click()
